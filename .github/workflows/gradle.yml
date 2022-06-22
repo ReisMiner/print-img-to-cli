@@ -29,11 +29,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-      with:
-        arguments: jar
-    - name: Upload artifact
+      run: ./gradlew jar
+    - name: Upload Built Jar To Github
       uses: actions/upload-artifact@v3
       with:
-        name: img-to-cli.jar
-        path: build/libs/*.jar
+        name: img-to-cli
+        path: ./build/libs/*.jar
