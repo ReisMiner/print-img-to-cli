@@ -22,16 +22,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-    - name: Build with Gradle
-      run: ./gradlew jar
-    - name: Upload Built Jar To Github
-      uses: actions/upload-artifact@v3
-      with:
-        name: img-to-cli
-        path: ./build/libs/*.jar
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: make gradlew executable
+        run: sudo chmod +x ./gradlew
+      - name: Build with Gradle
+        run: ./gradlew jar
+      - name: Upload Built Jar To Github
+        uses: actions/upload-artifact@v3
+        with:
+          name: img-to-cli
+          path: ./build/libs/*.jar
