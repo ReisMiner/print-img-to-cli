@@ -11,4 +11,4 @@ java -jar img-to-cli-VERSION.jar "./path/to/file.png"
 
 ### why bad code?
 
-literally did this in like 30mins lul. gonna fix some performance stuff later ig.
+literally did this in like 30mins lul. gonna fix some performance stuff later ig. nvm already fixed.
