@@ -6,7 +6,7 @@ read title to know what it does :)
 
 run with the follwing command in the terminal
 ```bash
-java -jar img-to-cli-1.0-SNAPSHOT.jar "./path/to/file.png"
+java -jar img-to-cli-VERSION.jar "./path/to/file.png"
 ```
 
 ### why bad code?
