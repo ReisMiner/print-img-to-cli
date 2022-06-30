@@ -31,7 +31,7 @@ jobs:
       - name: make gradlew executable
         run: sudo chmod +x ./gradlew
       - name: Build with Gradle
-        run: ./gradlew jar
+        run: ./gradlew shadowJar
       - name: Upload Built Jar To Github
         uses: actions/upload-artifact@v3
         with:
