@@ -23,6 +23,10 @@ public class Main {
         output.setRequired(false);
         options.addOption(output);
 
+        Option space = new Option("s", "with-space", false, "try to counteract stretching by adding spaces");
+        output.setRequired(false);
+        options.addOption(space);
+
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
         CommandLine cmd = null;
@@ -58,7 +62,6 @@ public class Main {
                 int g = (p >> 8) & 0xff;
                 int b = p & 0xff;
 
-                // calculate average
                 int avg = (r + g + b) / 3;
 
                 if (avg > minMax[1])
@@ -74,11 +77,21 @@ public class Main {
 
         StringBuilder out = new StringBuilder();
 
-        for (int a : avgs) {
-            if (a == -69)
-                out.append("\n");
-            else
-                out.append(lookup.toCharArray()[a / 20]).append(" ");
+        //intentionally dupe code cuz dont need to compare every pixel if the space option is set
+        if (cmd.hasOption("s")) {
+            for (int a : avgs) {
+                if (a == -69)
+                    out.append("\n");
+                else
+                    out.append(lookup.toCharArray()[a / 20]).append(" ");
+            }
+        } else {
+            for (int a : avgs) {
+                if (a == -69)
+                    out.append("\n");
+                else
+                    out.append(lookup.toCharArray()[a / 20]);
+            }
         }
 
 
@@ -87,6 +100,7 @@ public class Main {
             FileWriter fw = new FileWriter(tmp);
             fw.write(out.toString());
             fw.close();
+            System.out.println("Created and wrote to file: " + tmp.getPath());
         } else {
             System.out.println(out);
         }
