@@ -27,6 +27,10 @@ public class Main {
         output.setRequired(false);
         options.addOption(space);
 
+        Option userLookup = new Option("c", "characters", true, "define your own characters. the more to the right, the more its used for bright pixels.");
+        output.setRequired(false);
+        options.addOption(userLookup);
+
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
         CommandLine cmd = null;
@@ -74,8 +78,12 @@ public class Main {
             avgs.add(-69);
         }
 
-
         StringBuilder out = new StringBuilder();
+        int splitter = 20;
+        if (cmd.hasOption("c")) {
+            lookup = cmd.getOptionValue("c");
+            splitter = (int) Math.ceil(256f/lookup.length());
+        }
 
         //intentionally dupe code cuz dont need to compare every pixel if the space option is set
         if (cmd.hasOption("s")) {
@@ -83,14 +91,14 @@ public class Main {
                 if (a == -69)
                     out.append("\n");
                 else
-                    out.append(lookup.toCharArray()[a / 20]).append(" ");
+                    out.append(lookup.toCharArray()[a / splitter]).append(" ");
             }
         } else {
             for (int a : avgs) {
                 if (a == -69)
                     out.append("\n");
                 else
-                    out.append(lookup.toCharArray()[a / 20]);
+                    out.append(lookup.toCharArray()[a / splitter]);
             }
         }
 
