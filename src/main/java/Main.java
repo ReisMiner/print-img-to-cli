@@ -85,7 +85,7 @@ public class Main {
             splitter = (int) Math.ceil(256f/lookup.length());
         }
 
-        //intentionally dupe code cuz dont need to compare every pixel if the space option is set
+        //intentionally dupe code cuz don't need to compare every pixel if the space option is set
         if (cmd.hasOption("s")) {
             for (int a : avgs) {
                 if (a == -69)
